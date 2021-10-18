@@ -19,7 +19,7 @@ jobs:
       # 在 $GITHUB_WORKSPACE 下签出仓库，以便工作可以访问它
       - uses: actions/checkout@v2
 
-      - name: Build Docs
+      - name: "构建文档"
         run: ./gradlew run
 
       - name: "部署到 GitHub Pages"
