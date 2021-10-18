@@ -1,30 +1,30 @@
 name: Build Docs
 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # 这将会在 `build/docs/` 目录中生成 `html5` 与 `pdf` 目录。
   push:
-    branches: [ master ]
+    branches: [ zh-Hans ]
   pull_request:
-    branches: [ master ]
+    branches: [ zh-Hans ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # 允许从“Actions”选项卡手动运行此工作流
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# 工作流运行由单个或多个工作组成，这些工作可以顺序运行或并行运行
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # 在 $GITHUB_WORKSPACE 下签出仓库，以便工作可以访问它
       - uses: actions/checkout@v2
 
       - name: Build Docs
         run: ./gradlew run
 
-      - name: Deploy to GitHub Pages
+      - name: "部署到 GitHub Pages"
         uses: Cecilapp/GitHub-Pages-deploy@master
         env:
-          EMAIL: jonathan@jonathangiles.net
+          EMAIL: Yue_plus@foxmail.com
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BUILD_DIR: build/docs
