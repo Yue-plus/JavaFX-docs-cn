@@ -8,7 +8,7 @@ JavaFX 文档项目旨在从网络上收集重要的 JavaFX 信息，并在作�
  
 
 - 通过 [单页网站](https://fxdocs.github.io/docs/html5/index.html) 阅读
-- 通过 [单个 PDF 文件] 阅读。
+- 通过 [单个 PDF 文件](https://fxdocs.github.io/docs/pdf/index.pdf) 阅读。
 
 
 ## 构建流程
