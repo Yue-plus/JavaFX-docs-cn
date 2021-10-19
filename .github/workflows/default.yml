@@ -29,3 +29,4 @@ jobs:
         with:
           email: Yue_plus@foxmail.com
           build_dir: build/docs
+          cname: javafx.docs.yueplus.ink
