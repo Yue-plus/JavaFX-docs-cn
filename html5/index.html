@@ -448,11 +448,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_许可证">1.3. 许可证</a></li>
 </ul>
 </li>
-<li><a href="#_scene_graph">2. Scene Graph</a>
+<li><a href="#_场景图">2. 场景图</a>
 <ul class="sectlevel2">
-<li><a href="#_overview">2.1. Overview</a></li>
-<li><a href="#_transformations">2.2. Transformations</a></li>
-<li><a href="#_event_handling">2.3. Event Handling</a></li>
+<li><a href="#_概览">2.1. 概览</a></li>
+<li><a href="#_转换">2.2. 转换</a></li>
+<li><a href="#_事件处理">2.3. 事件处理</a></li>
 <li><a href="#_timing">2.4. Timing</a></li>
 </ul>
 </li>
@@ -580,53 +580,53 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_scene_graph">2. Scene Graph</h2>
+<h2 id="_场景图">2. 场景图</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview">2.1. Overview</h3>
+<h3 id="_概览">2.1. 概览</h3>
 <div class="paragraph">
-<p>A scene graph is a tree data structure that arranges (and groups) graphical objects for easier logical representation.
-It also allows the graphics engine to render the objects in the most efficient way by
-fully or partially skipping objects which will not be seen in the final image.
-The following figure shows an example of the JavaFX scene graph architecture.</p>
+<p>场景图是一种树状数据结构，它排列（与分组）图形对象以便于逻辑表示。
+它还允许图形引擎以最高效的方式渲染对象，
+完全跳过或部分跳过对象将不会在最终图像中看到。
+下图展示了 JavaFX 场景图体系结构的一个示例。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/scenegraph/scene_graph.jpg" alt="scene graph">
 </div>
-<div class="title">Figure 1. JavaFX Scene Graph</div>
+<div class="title">Figure 1. JavaFX 场景图</div>
 </div>
 <div class="paragraph">
-<p>At the very top of the architecture there is a <code>Stage</code>.
-A stage is a JavaFX representation of a native OS window.
-At any given time a stage can have a single <code>Scene</code> attached to it.
-A scene is a container for the JavaFX scene graph.</p>
+<p>在体系结构的最顶端有一个 <code>Stage</code>（舞台）。
+舞台是原生操作系统窗口的 JavaFX 表示。
+在任何给定的时间，一个舞台可以有一个单一的 <code>Scene</code>（场景）附加到它。
+场景是 JavaFX 场景图的容器。</p>
 </div>
 <div class="paragraph">
-<p>All elements in the JavaFX scene graph are represented as <code>Node</code> objects.
-There are three types of nodes: root, branch and leaf.
-The root node is the only node that does not have a parent
-and is directly contained by a scene, which can be seen in the figure above.
-The difference between a branch and a leaf is that a leaf node does not have children.</p>
+<p>JavaFX 场景图中的所有元素都表示为 <code>Node</code>（节点）对象。
+有三种类型的节点：根节点（root）、枝节点（branch）与叶节点（leaf）。
+根节点是唯一没有父节点的节点，
+它直接包含在场景中，如图所示。
+枝节点与叶节点的区别在于叶节点没有子节点。</p>
 </div>
 <div class="paragraph">
-<p>In the scene graph, many properties of a parent node are shared by children nodes.
-For instance, a transformation or an event applied to a parent node will also be applied recursively to its children.
-As such, a complex hierarchy of nodes can be viewed as a single node to simplify the programming model.
-We will explore transformations and events in later sections.</p>
+<p>在场景图中，父节点的许多属性被子节点共享。
+例如，应用于父节点的转换或事件也将递归应用于其子节点。
+因此，可以将复杂的节点层次结构视为单个节点，以简化编程模型。
+我们将在后面的小节中探索转换与事件。</p>
 </div>
 <div class="paragraph">
-<p>An example of a "Hello World" scene graph can be seen in the figure below.</p>
+<p>“Hello World”场景图示例如下图所示：</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/scenegraph/specific_scene_graph.jpg" alt="specific scene graph">
 </div>
-<div class="title">Figure 2. Hello World Scene Graph</div>
+<div class="title">Figure 2. Hello World 场景图</div>
 </div>
 <div class="paragraph">
-<p>One possible implementation that will produce a scene graph matching the figure above
-is as follows.</p>
+<p>一种可能的实现方法是生成与上图相匹配的场景图，
+如下所示：</p>
 </div>
 <div class="listingblock">
 <div class="title">HelloApp.class</div>
@@ -650,7 +650,7 @@ is as follows.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The result of running the code is seen in the next figure.</p>
+<p>运行代码的结果如下图所示：</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -659,23 +659,23 @@ is as follows.</p>
 <div class="title">Figure 3. Hello World</div>
 </div>
 <div class="paragraph">
-<p>Important notes:</p>
+<p>注意事项：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A node can have the maximum of 1 parent.</p>
+<p>一个节点最多可以有一个父节点。</p>
 </li>
 <li>
-<p>A node in the "active" (attached to a currently visible scene) scene graph can only be modified from the JavaFX Application Thread.</p>
+<p>“active”（附在当前可见的场景）场景图中的节点只能从 JavaFX 应用程序线程中进行修改。</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_transformations">2.2. Transformations</h3>
+<h3 id="_转换">2.2. 转换</h3>
 <div class="paragraph">
-<p>We will use the following app as an example to demonstrate the 3 most common transformations.</p>
+<p>我们将使用下面的应用程序作为示例来演示三种最常见的转换：</p>
 </div>
 <div class="listingblock">
 <div class="title">TransformApp.class</div>
@@ -691,7 +691,7 @@ is as follows.</p>
     }
 
     private void transform(Rectangle box) {
-        // we will apply transformations here
+        // 我们将在这里应用转换
     }
 
     @Override
@@ -707,23 +707,23 @@ is as follows.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Running the application will result in the following image.</p>
+<p>运行该应用程序将产生以下图像。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/scenegraph/transform_base.jpg" alt="transform base">
 </div>
-<div class="title">Figure 4. Blue Box</div>
+<div class="title">Figure 4. 蓝框</div>
 </div>
 <div class="paragraph">
-<p>In JavaFX, a simple transformation can happen in one of the 3 axes: X, Y or Z.
-The example application is in 2D, so we will only consider X and Y axes.</p>
+<p>在 JavaFX 中，一个简单的转换可以发生在三个轴中的一个：X、Y、Z。
+示例应用程序是 2D 的，所以我们只考虑 X 与 Y 轴。</p>
 </div>
 <div class="sect3">
-<h4 id="_translate">2.2.1. Translate</h4>
+<h4 id="_平移">2.2.1. 平移</h4>
 <div class="paragraph">
-<p>In JavaFX and computer graphics, <code>translate</code> means move.
-We can translate our box by 100 pixels in X axis and 200 pixels in Y axis.</p>
+<p>在 JavaFX 与计算机图形学中，<code>translate</code> 意味着移动。
+我们可以在 X 轴上平移 100 像素，在 Y 轴上平移 200 像素。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -737,21 +737,21 @@ We can translate our box by 100 pixels in X axis and 200 pixels in Y axis.</p>
 <div class="content">
 <img src="images/scenegraph/transform_translate.jpg" alt="transform translate">
 </div>
-<div class="title">Figure 5. Translate</div>
+<div class="title">Figure 5. 平移</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_scale">2.2.2. Scale</h4>
+<h4 id="_缩放">2.2.2. 缩放</h4>
 <div class="paragraph">
-<p>You can apply scaling to make a node larger or smaller.
-Scaling value is a ratio.
-By default, a node has a scaling value of 1 (100%) in each axis.
-We can enlarge our box by applying scaling of 1.5 in X and Y axes.</p>
+<p>你可以应用缩放使节点变大或变小。
+比例值是一个比率。
+默认情况下，节点在每个轴上的缩放值为 1（100%）。
+我们可以通过在 X 轴与 Y 轴上缩放 1.5 来扩大框。</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">private void transform(Rectangle box) {
-    // previous code
+    // 以前的代码
 
     box.setScaleX(1.5);
     box.setScaleY(1.5);
@@ -762,20 +762,20 @@ We can enlarge our box by applying scaling of 1.5 in X and Y axes.</p>
 <div class="content">
 <img src="images/scenegraph/transform_scale.jpg" alt="transform scale">
 </div>
-<div class="title">Figure 6. Scale</div>
+<div class="title">Figure 6. 缩放</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_rotate">2.2.3. Rotate</h4>
+<h4 id="_旋转">2.2.3. 旋转</h4>
 <div class="paragraph">
-<p>A node&#8217;s rotation determines the angle at which the node is rendered.
-In 2D the only sensible rotation axis is the Z axis.
-Let&#8217;s rotate the box by 30 degrees.</p>
+<p>节点的旋转决定了节点被渲染的角度。
+在 2D 中，唯一合理的旋转轴是 Z 轴。
+让我们把框旋转 30 度。</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">private void transform(Rectangle box) {
-    // previous code
+    // 以前的代码
 
     box.setRotate(30);
 }</code></pre>
@@ -785,36 +785,36 @@ Let&#8217;s rotate the box by 30 degrees.</p>
 <div class="content">
 <img src="images/scenegraph/transform_rotate.jpg" alt="transform rotate">
 </div>
-<div class="title">Figure 7. Rotate</div>
+<div class="title">Figure 7. 旋转</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_event_handling">2.3. Event Handling</h3>
+<h3 id="_事件处理">2.3. 事件处理</h3>
 <div class="paragraph">
-<p>An event notifies that something important has taken place.
-Events are typically the "primitive" of an event system (aka event bus).
-Generally, an event system has the following 3 responsibilities:</p>
+<p>事件通知发生了重要的事情。
+事件通常是事件系统（也就是事件总线）的“原语”。
+一般来说，事件系统有以下三种职责：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>fire</code> (trigger) an event,</p>
+<p><code>fire</code> （触发）一个事件，</p>
 </li>
 <li>
-<p>notify <code>listeners</code> (interested parties) about the event and</p>
+<p>通知 <code>listeners</code> （感兴趣的各方）有关事件与</p>
 </li>
 <li>
-<p><code>handle</code> (process) the event.</p>
+<p><code>handle</code> （处理）事件。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The event notification mechanism is done by the JavaFX platform automatically.
-Hence, we will only consider how to fire events, listen for events and how to handle them.</p>
+<p>事件通知机制由 JavaFX 平台自动完成。
+因此，我们将只考虑如何触发事件、侦听事件以及如何处理事件。</p>
 </div>
 <div class="paragraph">
-<p>First, let&#8217;s create a custom event.</p>
+<p>首先，让我们创建一个自定义事件。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -830,36 +830,36 @@ Hence, we will only consider how to fire events, listen for events and how to ha
         super(eventType);
     }
 
-    // any other fields of importance, e.g. data, timestamp
+    // 任何其他重要的字段，例如：数据、时间戳
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Since event types are fixed, they are usually created within the same source file as the event.
-We can see that there are 2 specific types of events: <code>LOGIN_SUCCEEDED</code> and <code>LOGIN_FAILED</code>.
-We can listen for such specific types of events:</p>
+<p>由于事件类型是固定的，它们通常是在与事件相同的源文件中创建的。
+我们可以看到有两种特定类型的事件：<code>LOGIN_SUCCEEDED</code> 与 <code>LOGIN_FAILED</code>。
+我们可以监听这些特定类型的事件:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Node node = ...
 node.addEventHandler(UserEvent.LOGIN_SUCCEEDED, event -&gt; {
-    // handle event
+    // 处理事件
 });</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, we can handle any <code>UserEvent</code>:</p>
+<p>或者，我们可以处理任何 <code>UserEvent</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Node node = ...
 node.addEventHandler(UserEvent.ANY, event -&gt; {
-    // handle event
+    // 处理事件
 });</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Finally, we are able to contruct and fire our own events:</p>
+<p>最后，我们能够构建并 fire 我们自己的事件</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -869,33 +869,32 @@ node.fireEvent(event);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For example, <code>LOGIN_SUCCEEDED</code> or <code>LOGIN_FAILED</code> could be fired when a user attempts to log in to an app.
-Depending on the login result we can allow the user access the app or lock him out of the app.
-Whilst the same functionality can be achieved with a simple <code>if</code> statement,
-there is one significant advantage of an event system.
-Event systems were designed to enable communication between various modules (sub-systems) in
-an application without tightly coupling them.
-As such, a sound might be played by an audio system when the user logs in.
-Thus, maintaining all audio related code in its own module.
-However, we will not delve deeper into architectural styles.</p>
+<p>例如，当用户尝试登录应用程序时，可能会触发 <code>LOGIN_SUCCEEDED</code> 或 <code>LOGIN_FAILED</code>。
+根据登录结果，我们可以允许用户访问应用程序或将其锁定在应用程序之外。
+虽然可以通过简单的 <code>if</code> 语句实现相同的功能，
+但事件系统有一个显着的优势。
+事件系统的设计目的是允许应用程序中的各个模块（子系统）之间进行通信，而无需将它们紧密耦合在一起。
+例如，当用户登录时，音频系统可能会播放声音。
+因此，在它自己的模块中维护所有音频相关的代码。
+不管怎样，我们不会深入研究软件架构风格。</p>
 </div>
 <div class="sect3">
-<h4 id="_input_events">2.3.1. Input Events</h4>
+<h4 id="_输入事件">2.3.1. 输入事件</h4>
 <div class="paragraph">
-<p>Key and mouse events are the most common types of events used in JavaFX.
-Each <code>Node</code> provides so-called "convenience methods" for handling these events.
-For instance, we can run some code when a button is pressed:</p>
+<p>鼠标与键盘事件是 JavaFX 中最常见的事件类型。
+每个 <code>Node</code> 都提供了所谓的“便利方法”来处理这些事件。
+例如，我们可以在按下按钮时运行一些代码：</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">Button button = ...
 button.setOnAction(event -&gt; {
-    // button was pressed
+    // 按钮被按下
 });</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more flexibility we can also use the following:</p>
+<p>为了更灵活，我们还可以使用以下方法</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -907,9 +906,9 @@ button.setOnMouseReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The object <code>e</code> above is of type <code>MouseEvent</code> and can be queried to obtain various information about the event,
-e.g. <code>x</code> and <code>y</code> positions, number of clicks, etc.
-Finally, we can do the same with keys:</p>
+<p>上面的对象 <code>e</code> 的类型为 <code>MouseEvent</code>，可以通过查询得到事件的各种信息，
+例如：X 与 Y 的位置，点击次数等。
+最后，我们可以对键盘做同样的事：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -919,8 +918,8 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The object <code>e</code> here is of type <code>KeyEvent</code> and it carries information about the key code, which can then be mapped
-to a real physical key on the keyboard.</p>
+<p>这里的对象 <code>e</code> 的类型为 <code>KeyEvent</code>，它携带有关键码的信息，
+然后可以映射到键盘上一个真正的物理键。</p>
 </div>
 </div>
 </div>
@@ -6447,7 +6446,7 @@ WARNING: Exception while evaluating select-binding [taxable]</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version unspecified<br>
-Last updated 2021-10-20 01:54:52 UTC
+Last updated 2021-10-20 12:06:10 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
