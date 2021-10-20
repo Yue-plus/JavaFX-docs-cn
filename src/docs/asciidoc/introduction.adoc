@@ -23,7 +23,7 @@ JavaFX 文档项目旨在为 JavaFX 开发人员从网络上收集有用的信�
 
 为这个项目做贡献是很容易的—— Fork http://www.github.com/FXDocs/docs[FXDocs/docs] GitHub 仓库，编辑相关文件，并创建一个 Pull Request！一旦合并，你的内容将成为文档的一部分，你将得到整个社区的无限赞赏。
 
-参与翻译可以 Fork https://github.com/Yue-plus/JavaFX-docs-cn[Yue-plus/JavaFX-docs-cn] GitHub 仓库，翻译内容并创建一个 Pull Request！
+参与翻译可以 Fork https://github.com/Yue-plus/JavaFX-docs-cn[Yue-plus/JavaFX-docs-cn] GitHub 仓库，翻译内容并创建一个 https://github.com/FXDocs/docs/pulls[Pull Request]！
 
 JavaFX 文档项目选择使用 AsciiDoc 作为编写文档的语法。 https://asciidoctor.cn/docs/asciidoc-syntax-quick-reference/[AsciiDoc 语法快速参考指南] 是学习如何编写 AsciiDoc 的最佳资源。
 
