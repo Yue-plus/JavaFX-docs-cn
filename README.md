@@ -7,7 +7,7 @@ JavaFX 文档项目旨在从网络上收集重要的 JavaFX 信息，并在作�
 文档可在线阅读，并将始终展示最新的编辑。目前有两种阅读形式：
  
 
-- 通过 [单页网站](https://fxdocs.github.io/docs/html5/index.html) 阅读
+- 通过 [单页网站](https://javafx.docs.yueplus.ink/html5/) 阅读
 - 通过 [单个 PDF 文件](https://fxdocs.github.io/docs/pdf/index.pdf) 阅读。
 
 
