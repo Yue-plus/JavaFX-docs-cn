@@ -1,0 +1,31 @@
+= 前言
+
+JavaFX 文档项目旨在为 JavaFX 开发人员从网络上收集有用的信息。该项目是 https://github.com/Yue-plus/JavaFX-docs-cn[开源] 的，并鼓励社区参与，以确保文档尽可能高度精炼和有用。
+
+== 贡献者
+
+该项目由 http://www.jonathangiles.net[Jonathan Giles] 发起，但任何人都可以做出贡献。任何问题、疑虑或反馈都应首先 mailto:jonathan@jonathangiles.net[通过 E-mail 发送给 Jonathan]。
+
+如果没有致力于本文档中所包含内容的贡献者，这个项目就不可能完成。本文档的作者是：
+
+- Abhinay Agarwal
+- https://almasb.github.io/[Almas Baimagambetov]
+- http://bekwam.blogspot.com/[Carl Walker]
+- http://kynosarges.org/[Christoph Nahr]
+- http://jonathangiles.net[Jonathan Giles]
+- https://harmoniccode.blogspot.com/[Gerrit Grunwald]
+
+
+== 做出贡献
+
+为这个项目做贡献是很容易的—— fork http://www.github.com/FXDocs/docs[GitHub] 仓库，编辑相关文件，并创建一个 Pull Request！一旦合并，你的内容将成为文档的一部分，你将得到整个社区的无限赞赏。
+
+JavaFX 文档项目选择使用 AsciiDoc 作为编写文档的语法。 https://asciidoctor.cn/docs/asciidoc-syntax-quick-reference/[AsciiDoc 语法快速参考指南] 是学习如何编写 AsciiDoc 的最佳资源。
+
+我们鼓励作者将自己的名字添加到前一节的贡献者列表中。
+
+== 许可证
+
+image::images/license/cc-by-nc-nd.png[]
+
+本作品是在 http://creativecommons.org/licenses/by-nc-nd/4.0/[知识共享署名-非商业性-无衍生品4.0国际许可协议] 下许可的。

@@ -23,7 +23,7 @@ asciidoctor {
     backends 'pdf','html5'
     outputDir = file("$buildDir/docs")
     sources {
-        include 'index.asc'
+        include 'index.adoc'
     }
     resources {
         from ('src/docs/asciidoc') {

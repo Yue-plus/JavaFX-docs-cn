@@ -1,0 +1,28 @@
+:docinfo1:
+= JavaFX 文档项目
+Published {localdate}
+:doctype: book
+:encoding: utf-8
+:lang: zh-Hans
+:toc: left
+:numbered:
+:media: prepress
+
+// 将标题向下推一级
+:leveloffset: 1
+
+include::introduction.adoc[]
+
+include::scenegraph.adoc[]
+
+include::ui-controls.adoc[]
+
+include::layout.adoc[]
+
+include::css.adoc[]
+
+include::performance.adoc[]
+
+include::app-structure.adoc[]
+
+include::best-practices.adoc[]
