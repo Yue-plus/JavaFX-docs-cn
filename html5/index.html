@@ -456,9 +456,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_时序">2.4. 时序</a></li>
 </ul>
 </li>
-<li><a href="#_ui_controls">3. UI Controls</a>
+<li><a href="#_ui_控件">3. UI 控件</a>
 <ul class="sectlevel2">
-<li><a href="#_choicebox">3.1. ChoiceBox</a></li>
+<li><a href="#_单项选择框">3.1. 单项选择框</a></li>
 <li><a href="#_combobox">3.2. ComboBox</a></li>
 <li><a href="#_listview">3.3. ListView</a></li>
 <li><a href="#_tableview">3.4. TableView</a></li>
@@ -1012,27 +1012,27 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ui_controls">3. UI Controls</h2>
+<h2 id="_ui_控件">3. UI 控件</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_choicebox">3.1. ChoiceBox</h3>
+<h3 id="_单项选择框">3.1. 单项选择框</h3>
 <div class="paragraph">
-<p>This article demonstrates the <code>ChoiceBox</code>.  The <code>ChoiceBox</code> control is a list of values from which the user makes a selection.  In this particular implementation, there is an empty value which makes the selection optional.</p>
+<p>本文演示了 <code>ChoiceBox</code>。<code>ChoiceBox</code> 控件是一个值列表，用户可以从中进行选择。在这种特定实现中，存在一个空值，这使得选择是可选的。</p>
 </div>
 <div class="paragraph">
-<p>The following screenshot shows <code>ChoiceBox</code> app.  A selection "Furniture" is made and the Save <code>Button</code> is pressed.  The Save <code>Button</code> call invokes a println() which prints out the object.</p>
+<p>以下屏幕截图显示了 <code>ChoiceBox</code> 应用程序。选择“Furniture”并按下 Save <code>Button</code>。Save <code>Button</code> 调用 <code>println()</code> 打印出对象。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ui-controls/choicebox.png" alt="choicebox">
 </div>
-<div class="title">Figure 9. ChoiceBox Printing Out Selection</div>
+<div class="title">Figure 9. 单项选择框打印出选择</div>
 </div>
 <div class="paragraph">
-<p>The program puts a <code>Label</code>, a <code>ChoiceBox</code>, and a <code>Button</code> into an HBox.  An action is set on the Save <code>Button</code> which prints out the value.</p>
+<p>该程序将 <code>Label</code>、<code>ChoiceBox</code> 与 <code>Button</code> 放入 Hbox中。在“Save” <code>Button</code> 上设置了一个操作，该操作打印出值。</p>
 </div>
 <div class="paragraph">
-<p>The simplest usage of the <code>ChoiceBox</code> is to fill it with Strings.  This <code>ChoiceBox</code> in this article is built on a JavaFX class called <code>Pair</code>.  <code>Pair</code> is a general container for any key/value pair and can be used in place of a domain or other special-purpose object.  Strings should only be used if they can be used without manipulation or decoded consistently.</p>
+<p><code>ChoiceBox</code> 的最简单用法是用字符串填充它。本文中的此 <code>ChoiceBox</code> 构建在一个名为 <code>Pair</code> 的 JavaFX 类上。<code>Pair</code> 是任何键/值对的一般容器，可以用于代替域或其他专用对象。字符串只能在不需要操作或一致解码的情况下使用。</p>
 </div>
 <div class="listingblock">
 <div class="title">ChoicesApp.class</div>
@@ -1072,12 +1072,12 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_stringconverter">3.1.1. StringConverter</h4>
+<h4 id="_字符转换工具类">3.1.1. 字符转换工具类</h4>
 <div class="paragraph">
-<p>When using a complex object to back a <code>ChoiceBox</code>, a <code>StringConverter</code> is needed.  This object serializes a String to and from the <code>ChoiceBox</code>.  For this program, only the toString() needs to be coded which replaces the default toString() of the <code>Pair</code> object.  (Both toString and fromString will need an implementation in order to compile.)</p>
+<p>当使用复杂对象支持 <code>ChoiceBox</code> 时，需要一个 <code>StringConverter</code>。此对象将字符串序列化到 <code>ChoiceBox</code> 中。对于此程序，只需要编码 <code>toString()</code>，替换 <code>Pair</code> 对象的默认 <code>toString()</code>。（<code>toString</code> 与 <code>fromString</code> 都需要实现以进行编译。）</p>
 </div>
 <div class="paragraph">
-<p>An empty object EMPTY_PAIR is used to prevent NullPointerExceptions.  The returned value from assetClass().getValue() can be accessed and compared consistently without adding special null handling logic.</p>
+<p>空对象 <code>EMPTY_PAIR</code> 用于防止 <code>NullPointerExceptions</code>。可以访问和比较来自 <code>assetClass().getValue()</code> 的返回值，而无需添加特殊的空处理逻辑。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1110,12 +1110,12 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The ChoiceBox is used to select from a list of values.  When the list of values is a complex type, provide a StringFormatter to serialize a list object into something presentable.  If possible, use an empty object (rather than a null) to support optional values.</p>
+<p>单项选择框用于从值列表中进行选择。当值列表是复杂类型时，提供一个 StringFormatter，以将列表对象序列化为呈现的东西。如果可能，请使用空对象（而不是 null）来支持可选值。</p>
 </div>
 <div class="sect4">
-<h5 id="_complete_code">Complete Code</h5>
+<h5 id="_完整代码">完整代码</h5>
 <div class="paragraph">
-<p>The code can be tested in a single .java file.</p>
+<p>代码可以在单个 .java 文件中进行测试。</p>
 </div>
 <div class="listingblock">
 <div class="title">ChoicesApp.class</div>
@@ -1300,7 +1300,7 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 <p>This article presented a simple usage of <code>ComboBox</code>.  Since this control was not editable, <code>ChoiceBox</code> can be substituted.  For un-editable graphical renderings (ex a color coded shape for a status value), <code>ComboBox</code> still would be needed to define the specific <code>Node</code> used in the control.</p>
 </div>
 <div class="sect4">
-<h5 id="_complete_code_2">Complete Code</h5>
+<h5 id="_complete_code">Complete Code</h5>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -1594,7 +1594,7 @@ primaryStage.show();</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_complete_code_3">Complete Code</h5>
+<h5 id="_complete_code_2">Complete Code</h5>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -1900,7 +1900,7 @@ primaryStage.show();</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_4">3.4.3. Complete Code</h4>
+<h4 id="_complete_code_3">3.4.3. Complete Code</h4>
 <div class="paragraph">
 <p>The complete code for the application follows.  It is a pair of class files TableSelectApp.java and Item.java.  Item.java was already presented in its entirety in an earlier section.</p>
 </div>
@@ -2397,7 +2397,7 @@ VBox.setMargin( bottomControls, new Insets(10.0d) );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_5">4.1.6. Complete Code</h4>
+<h4 id="_complete_code_4">4.1.6. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a pair of .java files.  There is a POJO for the Customer object used by the <code>TableView</code></p>
 </div>
@@ -3984,7 +3984,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_6">4.9.3. Complete Code</h4>
+<h4 id="_complete_code_5">4.9.3. Complete Code</h4>
 <div class="paragraph">
 <p>The complete code for TileApp follows.</p>
 </div>
@@ -4153,7 +4153,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_7">4.10.2. Complete Code</h4>
+<h4 id="_complete_code_6">4.10.2. Complete Code</h4>
 <div class="paragraph">
 <p>The following is the complete code for the first demonstration involving the hidden search parameters "TitledPaneApp".</p>
 </div>
@@ -5692,7 +5692,7 @@ messageLabel.textProperty().bind( task.messageProperty() );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_8">8.2.3. Complete Code</h4>
+<h4 id="_complete_code_7">8.2.3. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -5978,7 +5978,7 @@ messageLabel.textProperty().bind( task.messageProperty() );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_9">8.3.5. Complete Code</h4>
+<h4 id="_complete_code_8">8.3.5. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -6446,7 +6446,7 @@ WARNING: Exception while evaluating select-binding [taxable]</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version unspecified<br>
-Last updated 2021-10-21 03:33:12 UTC
+Last updated 2021-10-21 11:56:33 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
