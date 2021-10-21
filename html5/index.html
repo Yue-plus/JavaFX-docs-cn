@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<meta name="author" content="Published 2021-10-20">
+<meta name="author" content="Published 2021-10-21">
 <title>JavaFX 文档项目</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -435,7 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="header">
 <h1>JavaFX 文档项目</h1>
 <div class="details">
-<span id="author" class="author">Published 2021-10-20</span><br>
+<span id="author" class="author">Published 2021-10-21</span><br>
 <span id="revnumber">version unspecified</span>
 </div>
 <div id="toc" class="toc2">
@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_概览">2.1. 概览</a></li>
 <li><a href="#_转换">2.2. 转换</a></li>
 <li><a href="#_事件处理">2.3. 事件处理</a></li>
-<li><a href="#_timing">2.4. Timing</a></li>
+<li><a href="#_时序">2.4. 时序</a></li>
 </ul>
 </li>
 <li><a href="#_ui_controls">3. UI Controls</a>
@@ -557,7 +557,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>为这个项目做贡献是很容易的—— Fork <a href="http://www.github.com/FXDocs/docs">FXDocs/docs</a> GitHub 仓库，编辑相关文件，并创建一个 Pull Request！一旦合并，你的内容将成为文档的一部分，你将得到整个社区的无限赞赏。</p>
 </div>
 <div class="paragraph">
-<p>参与翻译可以 Fork <a href="https://github.com/Yue-plus/JavaFX-docs-cn">Yue-plus/JavaFX-docs-cn</a> GitHub 仓库，翻译内容并创建一个 Pull Request！</p>
+<p>参与翻译可以 Fork <a href="https://github.com/Yue-plus/JavaFX-docs-cn">Yue-plus/JavaFX-docs-cn</a> GitHub 仓库，翻译内容并创建一个 <a href="https://github.com/FXDocs/docs/pulls">Pull Request</a>！</p>
 </div>
 <div class="paragraph">
 <p>JavaFX 文档项目选择使用 AsciiDoc 作为编写文档的语法。 <a href="https://asciidoctor.cn/docs/asciidoc-syntax-quick-reference/">AsciiDoc 语法快速参考指南</a> 是学习如何编写 AsciiDoc 的最佳资源。</p>
@@ -918,30 +918,30 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>这里的对象 <code>e</code> 的类型为 <code>KeyEvent</code>，它携带有关键码的信息，
+<p>这里的对象 <code>e</code> 的类型为 <code>KeyEvent</code>，它携带有关的键码信息，
 然后可以映射到键盘上一个真正的物理键。</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_timing">2.4. Timing</h3>
+<h3 id="_时序">2.4. 时序</h3>
 <div class="paragraph">
-<p>It is important to understand the timing difference between the creation of JavaFX UI controls and the display of the controls.  When creating the UI controls&#8201;&#8212;&#8201;either through direct API object creation or through FXML&#8201;&#8212;&#8201;you may be missing certain screen geometry values such as the dimensions of a window.  That is available later, at the instant when the screen is shown to the user.  That showing event, called OnShown, is the time at which a window has been allocated and the final layout computations completed.</p>
+<p>理解 JavaFX UI 控件的创建与控件的显示之间的时序差异是很重要的。创建UI控件时——直接通过 API 对象创建或通过 FXML 创建——你可能缺少某些屏幕几何值，例如窗口的尺寸。稍后，在屏幕向用户显示窗口时尺寸才可用。这个显示事件成为 <code>OnShown</code>，是分配窗口和完成最终布局计算的时候。</p>
 </div>
 <div class="paragraph">
-<p>To demonstrate this, consider the following program which displays the screen dimensions while the UI controls are being created and the screen dimensions when the screen is shown.  The following screenshot shows the running of the program.  When the UI controls are being created (new VBox(), new Scene(), primaryStage.setScene()), there are no actual window height and width values available as evidenced by the undefined "NaN" values.</p>
+<p>为了证明这一点，请考虑以下程序，该程序在创建 UI 控件时显示屏幕尺寸，在屏幕显示时显示屏幕尺寸。以下截图显示了程序的运行情况。当正在创建 UI 控件时（<code>new VBox()</code>、<code>new Scene()</code>、<code>primaryStage.setScene()</code>），没有任何实际的窗口高度和宽度值，可以通过未定义的“NaN”值来证明。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/scenegraph/scenegraph_startvshown.png" alt="scenegraph startvshown">
 </div>
-<div class="title">Figure 8. Screen Geometry Not Available Before OnShown</div>
+<div class="title">Figure 8. 屏幕几何在打开之前不可用</div>
 </div>
 <div class="paragraph">
-<p>However, the values for width and height are available once the window is shown.  The program registers an event handler for the OnShown event and prepares the same output.</p>
+<p>然而，一旦显示窗口，便可以使用宽度与高度的值。程序为 <code>OnShown</code> 事件注册一个事件处理程序，并准备相同的输出。</p>
 </div>
 <div class="paragraph">
-<p>The following is the Java class of the demonstration program.</p>
+<p>下面是演示程序的 Java 类：</p>
 </div>
 <div class="listingblock">
 <div class="title">StartVsShownJavaFXApp</div>
@@ -986,13 +986,13 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 
         primaryStage.setScene( scene );
 
-        // before show()...I just set this to 480x320, right?
+        // 在 show() 之前……我刚刚把它设置为 480x320，对吧？
         startX.set( primaryStage.getWidth() );
         startY.set( primaryStage.getHeight() );
 
         primaryStage.setOnShown( (evt) -&gt; {
             shownX.set( primaryStage.getWidth() );
-            shownY.set( primaryStage.getHeight() );  // all available now
+            shownY.set( primaryStage.getHeight() );  // 现在全部可用
         });
 
         primaryStage.setTitle("Start Vs. Shown");
@@ -1006,7 +1006,7 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Sometimes, you&#8217;ll know the screen dimensions in advance and can use those values at any point in the JavaFX program.  This includes before the OnShown event.  However, if your initialization sequence contains logic that needs these values, you&#8217;ll need to work with the OnShown event.  A use case might be working with the last saved dimensions or dimensions based on program input.</p>
+<p>有时，你将提前了解屏幕尺寸，可以在 JavaFX 程序中的任何地方使用这些值。这包括在 <code>OnShown</code> 事件之前。但是，如果你的初始化序列包含需要这些值的逻辑，那么需要使用 <code>OnShown</code> 事件。用例可能使用最后保存的尺寸或基于程序输入的尺寸。</p>
 </div>
 </div>
 </div>
@@ -6446,7 +6446,7 @@ WARNING: Exception while evaluating select-binding [taxable]</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version unspecified<br>
-Last updated 2021-10-20 12:06:10 UTC
+Last updated 2021-10-21 03:33:12 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
