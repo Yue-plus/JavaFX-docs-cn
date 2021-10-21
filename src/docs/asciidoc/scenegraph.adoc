@@ -1,36 +1,36 @@
-= Scene Graph
+= 场景图
 
-== Overview
+== 概览
 
-A scene graph is a tree data structure that arranges (and groups) graphical objects for easier logical representation.
-It also allows the graphics engine to render the objects in the most efficient way by
-fully or partially skipping objects which will not be seen in the final image.
-The following figure shows an example of the JavaFX scene graph architecture.
+场景图是一种树状数据结构，它排列（与分组）图形对象以便于逻辑表示。
+它还允许图形引擎以最高效的方式渲染对象，
+完全跳过或部分跳过对象将不会在最终图像中看到。
+下图展示了 JavaFX 场景图体系结构的一个示例。
 
-image::images/scenegraph/scene_graph.jpg[title="JavaFX Scene Graph"]
+image::images/scenegraph/scene_graph.jpg[title="JavaFX 场景图"]
 
-At the very top of the architecture there is a `Stage`.
-A stage is a JavaFX representation of a native OS window.
-At any given time a stage can have a single `Scene` attached to it.
-A scene is a container for the JavaFX scene graph.
+在体系结构的最顶端有一个 `Stage`（舞台）。
+舞台是原生操作系统窗口的 JavaFX 表示。
+在任何给定的时间，一个舞台可以有一个单一的 `Scene`（场景）附加到它。
+场景是 JavaFX 场景图的容器。
 
-All elements in the JavaFX scene graph are represented as `Node` objects.
-There are three types of nodes: root, branch and leaf.
-The root node is the only node that does not have a parent
-and is directly contained by a scene, which can be seen in the figure above.
-The difference between a branch and a leaf is that a leaf node does not have children.
+JavaFX 场景图中的所有元素都表示为 `Node`（节点）对象。
+有三种类型的节点：根节点（root）、枝节点（branch）与叶节点（leaf）。
+根节点是唯一没有父节点的节点，
+它直接包含在场景中，如图所示。
+枝节点与叶节点的区别在于叶节点没有子节点。
 
-In the scene graph, many properties of a parent node are shared by children nodes.
-For instance, a transformation or an event applied to a parent node will also be applied recursively to its children.
-As such, a complex hierarchy of nodes can be viewed as a single node to simplify the programming model.
-We will explore transformations and events in later sections.
+在场景图中，父节点的许多属性被子节点共享。
+例如，应用于父节点的转换或事件也将递归应用于其子节点。
+因此，可以将复杂的节点层次结构视为单个节点，以简化编程模型。
+我们将在后面的小节中探索转换与事件。
 
-An example of a "Hello World" scene graph can be seen in the figure below.
+“Hello World”场景图示例如下图所示：
 
-image::images/scenegraph/specific_scene_graph.jpg[title="Hello World Scene Graph"]
+image::images/scenegraph/specific_scene_graph.jpg[title="Hello World 场景图"]
 
-One possible implementation that will produce a scene graph matching the figure above
-is as follows.
+一种可能的实现方法是生成与上图相匹配的场景图，
+如下所示：
 
 [source,java]
 .HelloApp.class
@@ -53,18 +53,18 @@ public class HelloApp extends Application {
 }
 ----
 
-The result of running the code is seen in the next figure.
+运行代码的结果如下图所示：
 
 image::images/scenegraph/hello_world.jpg[title="Hello World"]
 
-Important notes:
+注意事项：
 
-* A node can have the maximum of 1 parent.
-* A node in the "active" (attached to a currently visible scene) scene graph can only be modified from the JavaFX Application Thread.
+* 一个节点最多可以有一个父节点。
+* “active”（附在当前可见的场景）场景图中的节点只能从 JavaFX 应用程序线程中进行修改。
 
-== Transformations
+== 转换
 
-We will use the following app as an example to demonstrate the 3 most common transformations.
+我们将使用下面的应用程序作为示例来演示三种最常见的转换：
 
 [source,java]
 .TransformApp.class
@@ -80,7 +80,7 @@ public class TransformApp extends Application {
     }
 
     private void transform(Rectangle box) {
-        // we will apply transformations here
+        // 我们将在这里应用转换
     }
 
     @Override
@@ -95,17 +95,17 @@ public class TransformApp extends Application {
 }
 ----
 
-Running the application will result in the following image.
+运行该应用程序将产生以下图像。
 
-image::images/scenegraph/transform_base.jpg[title="Blue Box"]
+image::images/scenegraph/transform_base.jpg[title="蓝框"]
 
-In JavaFX, a simple transformation can happen in one of the 3 axes: X, Y or Z.
-The example application is in 2D, so we will only consider X and Y axes.
+在 JavaFX 中，一个简单的转换可以发生在三个轴中的一个：X、Y、Z。
+示例应用程序是 2D 的，所以我们只考虑 X 与 Y 轴。
 
-=== Translate
+=== 平移
 
-In JavaFX and computer graphics, `translate` means move.
-We can translate our box by 100 pixels in X axis and 200 pixels in Y axis.
+在 JavaFX 与计算机图形学中，`translate` 意味着移动。
+我们可以在 X 轴上平移 100 像素，在 Y 轴上平移 200 像素。
 
 [source,java]
 ----
@@ -115,58 +115,58 @@ private void transform(Rectangle box) {
 }
 ----
 
-image::images/scenegraph/transform_translate.jpg[title="Translate"]
+image::images/scenegraph/transform_translate.jpg[title="平移"]
 
-=== Scale
+=== 缩放
 
-You can apply scaling to make a node larger or smaller.
-Scaling value is a ratio.
-By default, a node has a scaling value of 1 (100%) in each axis.
-We can enlarge our box by applying scaling of 1.5 in X and Y axes.
+你可以应用缩放使节点变大或变小。
+比例值是一个比率。
+默认情况下，节点在每个轴上的缩放值为 1（100%）。
+我们可以通过在 X 轴与 Y 轴上缩放 1.5 来扩大框。
 
 [source,java]
 ----
 private void transform(Rectangle box) {
-    // previous code
+    // 以前的代码
     
     box.setScaleX(1.5);
     box.setScaleY(1.5);
 }
 ----
 
-image::images/scenegraph/transform_scale.jpg[title="Scale"]
+image::images/scenegraph/transform_scale.jpg[title="缩放"]
 
-=== Rotate
+=== 旋转
 
-A node's rotation determines the angle at which the node is rendered.
-In 2D the only sensible rotation axis is the Z axis.
-Let's rotate the box by 30 degrees.
+节点的旋转决定了节点被渲染的角度。
+在 2D 中，唯一合理的旋转轴是 Z 轴。
+让我们把框旋转 30 度。
 
 [source,java]
 ----
 private void transform(Rectangle box) {
-    // previous code
+    // 以前的代码
     
     box.setRotate(30);
 }
 ----
 
-image::images/scenegraph/transform_rotate.jpg[title="Rotate"]
+image::images/scenegraph/transform_rotate.jpg[title="旋转"]
 
-== Event Handling
+== 事件处理
 
-An event notifies that something important has taken place.
-Events are typically the "primitive" of an event system (aka event bus).
-Generally, an event system has the following 3 responsibilities:
+事件通知发生了重要的事情。
+事件通常是事件系统（也就是事件总线）的“原语”。
+一般来说，事件系统有以下三种职责：
 
-* `fire` (trigger) an event,
-* notify `listeners` (interested parties) about the event and
-* `handle` (process) the event.
+* `fire` （触发）一个事件，
+* 通知 `listeners` （感兴趣的各方）有关事件与
+* `handle` （处理）事件。
 
-The event notification mechanism is done by the JavaFX platform automatically.
-Hence, we will only consider how to fire events, listen for events and how to handle them.
+事件通知机制由 JavaFX 平台自动完成。
+因此，我们将只考虑如何触发事件、侦听事件以及如何处理事件。
 
-First, let's create a custom event.
+首先，让我们创建一个自定义事件。
 
 [source,java]
 ----
@@ -182,33 +182,33 @@ public class UserEvent extends Event {
         super(eventType);
     }
     
-    // any other fields of importance, e.g. data, timestamp
+    // 任何其他重要的字段，例如：数据、时间戳
 }
 ----
 
-Since event types are fixed, they are usually created within the same source file as the event.
-We can see that there are 2 specific types of events: `LOGIN_SUCCEEDED` and `LOGIN_FAILED`.
-We can listen for such specific types of events:
+由于事件类型是固定的，它们通常是在与事件相同的源文件中创建的。
+我们可以看到有两种特定类型的事件：`LOGIN_SUCCEEDED` 与 `LOGIN_FAILED`。
+我们可以监听这些特定类型的事件:
 
 [source,java]
 ----
 Node node = ...
 node.addEventHandler(UserEvent.LOGIN_SUCCEEDED, event -> {
-    // handle event
+    // 处理事件
 });
 ----
 
-Alternatively, we can handle any `UserEvent`:
+或者，我们可以处理任何 `UserEvent`:
 
 [source,java]
 ----
 Node node = ...
 node.addEventHandler(UserEvent.ANY, event -> {
-    // handle event
+    // 处理事件
 });
 ----
 
-Finally, we are able to contruct and fire our own events:
+最后，我们能够构建并 fire 我们自己的事件
 
 [source,java]
 ----
@@ -217,31 +217,30 @@ Node node = ...
 node.fireEvent(event);
 ----
 
-For example, `LOGIN_SUCCEEDED` or `LOGIN_FAILED` could be fired when a user attempts to log in to an app.
-Depending on the login result we can allow the user access the app or lock him out of the app.
-Whilst the same functionality can be achieved with a simple `if` statement,
-there is one significant advantage of an event system.
-Event systems were designed to enable communication between various modules (sub-systems) in
-an application without tightly coupling them.
-As such, a sound might be played by an audio system when the user logs in.
-Thus, maintaining all audio related code in its own module.
-However, we will not delve deeper into architectural styles.
+例如，当用户尝试登录应用程序时，可能会触发 `LOGIN_SUCCEEDED` 或 `LOGIN_FAILED`。
+根据登录结果，我们可以允许用户访问应用程序或将其锁定在应用程序之外。
+虽然可以通过简单的 `if` 语句实现相同的功能，
+但事件系统有一个显着的优势。
+事件系统的设计目的是允许应用程序中的各个模块（子系统）之间进行通信，而无需将它们紧密耦合在一起。
+例如，当用户登录时，音频系统可能会播放声音。
+因此，在它自己的模块中维护所有音频相关的代码。
+不管怎样，我们不会深入研究软件架构风格。
 
-=== Input Events
+=== 输入事件
 
-Key and mouse events are the most common types of events used in JavaFX.
-Each `Node` provides so-called "convenience methods" for handling these events.
-For instance, we can run some code when a button is pressed:
+鼠标与键盘事件是 JavaFX 中最常见的事件类型。
+每个 `Node` 都提供了所谓的“便利方法”来处理这些事件。
+例如，我们可以在按下按钮时运行一些代码：
 
 [source,java]
 ----
 Button button = ...
 button.setOnAction(event -> {
-    // button was pressed
+    // 按钮被按下
 });
 ----
 
-For more flexibility we can also use the following:
+为了更灵活，我们还可以使用以下方法
 
 [source,java]
 ----
@@ -252,9 +251,9 @@ button.setOnMousePressed(e -> ...);
 button.setOnMouseReleased(e -> ...);
 ----
 
-The object `e` above is of type `MouseEvent` and can be queried to obtain various information about the event,
-e.g. `x` and `y` positions, number of clicks, etc.
-Finally, we can do the same with keys:
+上面的对象 `e` 的类型为 `MouseEvent`，可以通过查询得到事件的各种信息，
+例如：X 与 Y 的位置，点击次数等。
+最后，我们可以对键盘做同样的事：
 
 [source,java]
 ----
@@ -263,8 +262,8 @@ button.setOnKeyPressed(e -> ...);
 button.setOnKeyReleased(e -> ...);
 ----
 
-The object `e` here is of type `KeyEvent` and it carries information about the key code, which can then be mapped
-to a real physical key on the keyboard.
+这里的对象 `e` 的类型为 `KeyEvent`，它携带有关键码的信息，
+然后可以映射到键盘上一个真正的物理键。
 
 == Timing
 
