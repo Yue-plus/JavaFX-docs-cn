@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<meta name="author" content="Published 2021-10-21">
+<meta name="author" content="Published 2021-10-22">
 <title>JavaFX 文档项目</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -435,7 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="header">
 <h1>JavaFX 文档项目</h1>
 <div class="details">
-<span id="author" class="author">Published 2021-10-21</span><br>
+<span id="author" class="author">Published 2021-10-22</span><br>
 <span id="revnumber">version unspecified</span>
 </div>
 <div id="toc" class="toc2">
@@ -458,8 +458,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_ui_控件">3. UI 控件</a>
 <ul class="sectlevel2">
-<li><a href="#_单项选择框">3.1. 单项选择框</a></li>
-<li><a href="#_combobox">3.2. ComboBox</a></li>
+<li><a href="#_选择框">3.1. 选择框</a></li>
+<li><a href="#_组合框">3.2. 组合框</a></li>
 <li><a href="#_listview">3.3. ListView</a></li>
 <li><a href="#_tableview">3.4. TableView</a></li>
 <li><a href="#_imageview">3.5. ImageView</a></li>
@@ -1015,7 +1015,7 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 <h2 id="_ui_控件">3. UI 控件</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_单项选择框">3.1. 单项选择框</h3>
+<h3 id="_选择框">3.1. 选择框</h3>
 <div class="paragraph">
 <p>本文演示了 <code>ChoiceBox</code>。<code>ChoiceBox</code> 控件是一个值列表，用户可以从中进行选择。在这种特定实现中，存在一个空值，这使得选择是可选的。</p>
 </div>
@@ -1026,7 +1026,7 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 <div class="content">
 <img src="images/ui-controls/choicebox.png" alt="choicebox">
 </div>
-<div class="title">Figure 9. 单项选择框打印出选择</div>
+<div class="title">Figure 9. 选择框打印出选择</div>
 </div>
 <div class="paragraph">
 <p>该程序将 <code>Label</code>、<code>ChoiceBox</code> 与 <code>Button</code> 放入 Hbox中。在“Save” <code>Button</code> 上设置了一个操作，该操作打印出值。</p>
@@ -1110,7 +1110,7 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>单项选择框用于从值列表中进行选择。当值列表是复杂类型时，提供一个 StringFormatter，以将列表对象序列化为呈现的东西。如果可能，请使用空对象（而不是 null）来支持可选值。</p>
+<p>选择框用于从值列表中进行选择。当值列表是复杂类型时，提供一个 StringFormatter，以将列表对象序列化为呈现的东西。如果可能，请使用空对象（而不是 null）来支持可选值。</p>
 </div>
 <div class="sect4">
 <h5 id="_完整代码">完整代码</h5>
@@ -1190,21 +1190,21 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_combobox">3.2. ComboBox</h3>
+<h3 id="_组合框">3.2. 组合框</h3>
 <div class="paragraph">
-<p>A <code>ComboBox</code> is a hybrid control that presents a list of values plus an edit control.  This article demonstrates a basic form of the <code>ComboBox</code> which is an un-editable list of items built on a complex data structure.</p>
+<p><code>ComboBox</code> 是一个混合控件，它呈现了值列表加编辑控件。本文演示了 <code>ComboBox</code> 的基本形式，它是在复杂数据结构上构建的不可编辑的项目列表。</p>
 </div>
 <div class="paragraph">
-<p>This screenshot shows a ComboBoxApp containing a list of expense accounts.  The accounts are stored in a key/value JavaFX class <code>Pair</code>.  The console shows the result of a save operation after the user selects "Auto Expense".</p>
+<p>此截图显示了包含费用帐户列表的 ComboBoxApp。该帐户存储在键/值 JavaFX 类 <code>Pair</code> 中。控制台显示用户选择“Auto Expense”后保存操作的结果。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ui-controls/combobox.png" alt="combobox">
 </div>
-<div class="title">Figure 10. ComboBox Application</div>
+<div class="title">Figure 10. 组合框应用</div>
 </div>
 <div class="paragraph">
-<p>This code adds a Label, a ComboBox, and a Button to an HBox.  The ComboBox is instantiated as a field and initialized in a method presented later initCombo().  A handler is put on the Save Button which outputs a value if an item is selected or a special message if no item is selected.</p>
+<p>此代码添加标签、组合框与按钮到 HBox。组合框将被实例化为字段，并在稍后给出的 <code>initCombo()</code> 方法中初始化。在 Save 按钮上放置一个处理程序，如果选择了一个项，那么输出一个值；如果没有选择项，那么输出一个特殊消息。</p>
 </div>
 <div class="listingblock">
 <div class="title">CombosApp.class</div>
@@ -1245,19 +1245,20 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
         primaryStage.setTitle("CombosApp");
         primaryStage.setScene( scene );
         primaryStage.show();
-    }</code></pre>
+    }
+}</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cellfactory">3.2.1. CellFactory</h4>
+<h4 id="_细胞工厂">3.2.1. 细胞工厂</h4>
 <div class="paragraph">
-<p>The initCombo() method adds several expense accounts to a <code>List</code>.   This <code>List</code> is added to the <code>ComboBox</code> items after an empty <code>Pair</code> object is added.  The initial value is set to the EMPTY_PAIR which is a constant.</p>
+<p><code>initCombo()</code> 方法将多个费用帐户添加到 <code>List</code> 中。在添加了一个空的 <code>Pair</code> 对象后，这个 <code>List</code> 被添加到 <code>ComboBox</code> 项中。初始值被设置为 <code>EMPTY_PAIR</code>，这是一个常量。</p>
 </div>
 <div class="paragraph">
-<p>If not specified, the <code>ComboBox</code> will use the toString() method of the object (in this article, a <code>Pair</code>) to render a backing object.  For Strings, such as a "Yes" or "No" selection, no extra code is needed.  However, the toString() of a <code>Pair</code> will output both the human-readable key and the machine-preferred value.  The requirements for this <code>ComboBox</code> are to use only the human-readable keys in the display.</p>
+<p>如果未指定，那么 <code>ComboBox</code> 将使用对象的 <code>toString()</code> 方法（在本文中为 <code>Pair</code>）来呈现后备对象。对于字符串，例如“Yes”或“No”选择，不需要额外的代码。然而，<code>Pair</code> 的 <code>toString()</code> 将输出人类可读的键与机器首选的值。对该 <code>ComboBox</code> 的要求是在显示中仅使用人类可读的键。</p>
 </div>
 <div class="paragraph">
-<p>To do this, a cellFactory is provided which will configure a <code>ListCell</code> object with the <code>Pair</code> key as the contents.  The <code>Callback</code> type is verbose, but the gist of the factory is set the text of a <code>ListCell</code> in the updateItem() method of an anonymous inner class.  Notice that the super class method must be called.</p>
+<p>为此，提供了一个细胞工厂，它将以 <code>Pair</code> 键作为内容配置一个 <code>ListCell</code> 对象。<code>Callback</code> 类型很冗长，但工厂的要点是在匿名内部类的 <code>updateItem()</code> 方法中设置 <code>ListCell</code> 的文本。注意，必须调用超类方法。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1294,15 +1295,15 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Callback</code> is used in the setButtonCell() method to provide a cell for the editing control.  Note that this program is not editable which is the default.  However, the factory.call(null) is needed otherwise only the contents of the popup menu will be properly formatted and the view of the control at rest will fallback on a toString().</p>
+<p><code>Callback</code> 在 <code>setButtonCell()</code> 方法中用于为编辑控件提供单元格。请注意，此程序不可编辑，这是默认的。但是，<code>factory.call(null)</code> 是必需的，否则只有弹出菜单的内容才会被正确格式化，并且处于静止状态的控件的视图将回退为 <code>toString()</code>。</p>
 </div>
 <div class="paragraph">
-<p>This article presented a simple usage of <code>ComboBox</code>.  Since this control was not editable, <code>ChoiceBox</code> can be substituted.  For un-editable graphical renderings (ex a color coded shape for a status value), <code>ComboBox</code> still would be needed to define the specific <code>Node</code> used in the control.</p>
+<p>本文介绍了 <code>ComboBox</code> 的一个简单用法。由于该控件是不可编辑的，所以可以替换 <code>ChoiceBox</code>。对于不可编辑的图形渲染（用颜色编码的形状表示状态值），仍然需要 <code>ComboBox</code> 来定义控件中使用的特定 <code>Node</code>。</p>
 </div>
 <div class="sect4">
-<h5 id="_complete_code">Complete Code</h5>
+<h5 id="_完整代码_2">完整代码</h5>
 <div class="paragraph">
-<p>The code can be tested in a single .java file.</p>
+<p>代码可以在单个 .java 文件中进行测试。</p>
 </div>
 <div class="listingblock">
 <div class="title">CombosApp.class</div>
@@ -1594,7 +1595,7 @@ primaryStage.show();</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_complete_code_2">Complete Code</h5>
+<h5 id="_complete_code">Complete Code</h5>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -1900,7 +1901,7 @@ primaryStage.show();</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_3">3.4.3. Complete Code</h4>
+<h4 id="_complete_code_2">3.4.3. Complete Code</h4>
 <div class="paragraph">
 <p>The complete code for the application follows.  It is a pair of class files TableSelectApp.java and Item.java.  Item.java was already presented in its entirety in an earlier section.</p>
 </div>
@@ -2397,7 +2398,7 @@ VBox.setMargin( bottomControls, new Insets(10.0d) );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_4">4.1.6. Complete Code</h4>
+<h4 id="_complete_code_3">4.1.6. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a pair of .java files.  There is a POJO for the Customer object used by the <code>TableView</code></p>
 </div>
@@ -3984,7 +3985,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_5">4.9.3. Complete Code</h4>
+<h4 id="_complete_code_4">4.9.3. Complete Code</h4>
 <div class="paragraph">
 <p>The complete code for TileApp follows.</p>
 </div>
@@ -4153,7 +4154,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_6">4.10.2. Complete Code</h4>
+<h4 id="_complete_code_5">4.10.2. Complete Code</h4>
 <div class="paragraph">
 <p>The following is the complete code for the first demonstration involving the hidden search parameters "TitledPaneApp".</p>
 </div>
@@ -5692,7 +5693,7 @@ messageLabel.textProperty().bind( task.messageProperty() );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_7">8.2.3. Complete Code</h4>
+<h4 id="_complete_code_6">8.2.3. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -5978,7 +5979,7 @@ messageLabel.textProperty().bind( task.messageProperty() );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_8">8.3.5. Complete Code</h4>
+<h4 id="_complete_code_7">8.3.5. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -6446,7 +6447,7 @@ WARNING: Exception while evaluating select-binding [taxable]</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version unspecified<br>
-Last updated 2021-10-21 11:56:33 UTC
+Last updated 2021-10-22 02:03:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
