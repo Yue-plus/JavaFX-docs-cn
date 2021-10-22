@@ -1,12 +1,12 @@
 = UI 控件
 
-== 单项选择框
+== 选择框
 
 本文演示了 `ChoiceBox`。`ChoiceBox` 控件是一个值列表，用户可以从中进行选择。在这种特定实现中，存在一个空值，这使得选择是可选的。
 
 以下屏幕截图显示了 `ChoiceBox` 应用程序。选择“Furniture”并按下 Save `Button`。Save `Button` 调用 `println()` 打印出对象。
 
-image::images/ui-controls/choicebox.png[title="单项选择框打印出选择"]
+image::images/ui-controls/choicebox.png[title="选择框打印出选择"]
 
 该程序将 `Label`、`ChoiceBox` 与 `Button` 放入 Hbox中。在“Save” `Button` 上设置了一个操作，该操作打印出值。
 
@@ -85,7 +85,7 @@ public class ChoicesApp extends Application {
     }
 ----
 
-单项选择框用于从值列表中进行选择。当值列表是复杂类型时，提供一个 StringFormatter，以将列表对象序列化为呈现的东西。如果可能，请使用空对象（而不是 null）来支持可选值。
+选择框用于从值列表中进行选择。当值列表是复杂类型时，提供一个 StringFormatter，以将列表对象序列化为呈现的东西。如果可能，请使用空对象（而不是 null）来支持可选值。
 
 ==== 完整代码
 
@@ -160,15 +160,15 @@ public class ChoicesApp extends Application {
 }
 ----
 
-== ComboBox
+== 组合框
 
-A `ComboBox` is a hybrid control that presents a list of values plus an edit control.  This article demonstrates a basic form of the `ComboBox` which is an un-editable list of items built on a complex data structure.
+`ComboBox` 是一个混合控件，它呈现了值列表加编辑控件。本文演示了 `ComboBox` 的基本形式，它是在复杂数据结构上构建的不可编辑的项目列表。
 
-This screenshot shows a ComboBoxApp containing a list of expense accounts.  The accounts are stored in a key/value JavaFX class `Pair`.  The console shows the result of a save operation after the user selects "Auto Expense".
+此截图显示了包含费用帐户列表的 ComboBoxApp。该帐户存储在键/值 JavaFX 类 `Pair` 中。控制台显示用户选择“Auto Expense”后保存操作的结果。
 
-image::images/ui-controls/combobox.png[title="ComboBox Application"]
+image::images/ui-controls/combobox.png[title="组合框应用"]
 
-This code adds a Label, a ComboBox, and a Button to an HBox.  The ComboBox is instantiated as a field and initialized in a method presented later initCombo().  A handler is put on the Save Button which outputs a value if an item is selected or a special message if no item is selected.
+此代码添加标签、组合框与按钮到 HBox。组合框将被实例化为字段，并在稍后给出的 `initCombo()` 方法中初始化。在 Save 按钮上放置一个处理程序，如果选择了一个项，那么输出一个值；如果没有选择项，那么输出一个特殊消息。
 
 [source,java]
 .CombosApp.class
@@ -210,15 +210,16 @@ public class CombosApp extends Application {
         primaryStage.setScene( scene );
         primaryStage.show();
     }
+}
 ----
 
-=== CellFactory
+=== 细胞工厂
 
-The initCombo() method adds several expense accounts to a `List`.   This `List` is added to the `ComboBox` items after an empty `Pair` object is added.  The initial value is set to the EMPTY_PAIR which is a constant.
+`initCombo()` 方法将多个费用帐户添加到 `List` 中。在添加了一个空的 `Pair` 对象后，这个 `List` 被添加到 `ComboBox` 项中。初始值被设置为 `EMPTY_PAIR`，这是一个常量。
 
-If not specified, the `ComboBox` will use the toString() method of the object (in this article, a `Pair`) to render a backing object.  For Strings, such as a "Yes" or "No" selection, no extra code is needed.  However, the toString() of a `Pair` will output both the human-readable key and the machine-preferred value.  The requirements for this `ComboBox` are to use only the human-readable keys in the display.
+如果未指定，那么 `ComboBox` 将使用对象的 `toString()` 方法（在本文中为 `Pair`）来呈现后备对象。对于字符串，例如“Yes”或“No”选择，不需要额外的代码。然而，`Pair` 的 `toString()` 将输出人类可读的键与机器首选的值。对该 `ComboBox` 的要求是在显示中仅使用人类可读的键。
 
-To do this, a cellFactory is provided which will configure a `ListCell` object with the `Pair` key as the contents.  The `Callback` type is verbose, but the gist of the factory is set the text of a `ListCell` in the updateItem() method of an anonymous inner class.  Notice that the super class method must be called.
+为此，提供了一个细胞工厂，它将以 `Pair` 键作为内容配置一个 `ListCell` 对象。`Callback` 类型很冗长，但工厂的要点是在匿名内部类的 `updateItem()` 方法中设置 `ListCell` 的文本。注意，必须调用超类方法。
 
 [source,java]
 ----
@@ -254,13 +255,13 @@ To do this, a cellFactory is provided which will configure a `ListCell` object w
     }
 ----
 
-The `Callback` is used in the setButtonCell() method to provide a cell for the editing control.  Note that this program is not editable which is the default.  However, the factory.call(null) is needed otherwise only the contents of the popup menu will be properly formatted and the view of the control at rest will fallback on a toString().
+`Callback` 在 `setButtonCell()` 方法中用于为编辑控件提供单元格。请注意，此程序不可编辑，这是默认的。但是，`factory.call(null)` 是必需的，否则只有弹出菜单的内容才会被正确格式化，并且处于静止状态的控件的视图将回退为 `toString()`。
 
-This article presented a simple usage of `ComboBox`.  Since this control was not editable, `ChoiceBox` can be substituted.  For un-editable graphical renderings (ex a color coded shape for a status value), `ComboBox` still would be needed to define the specific `Node` used in the control.
+本文介绍了 `ComboBox` 的一个简单用法。由于该控件是不可编辑的，所以可以替换 `ChoiceBox`。对于不可编辑的图形渲染（用颜色编码的形状表示状态值），仍然需要 `ComboBox` 来定义控件中使用的特定 `Node`。
 
-==== Complete Code
+==== 完整代码
 
-The code can be tested in a single .java file.
+代码可以在单个 .java 文件中进行测试。
 
 [source,java]
 .CombosApp.class
