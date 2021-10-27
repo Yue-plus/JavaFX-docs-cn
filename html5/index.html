@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<meta name="author" content="Published 2021-10-22">
+<meta name="author" content="Published 2021-10-27">
 <title>JavaFX 文档项目</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -435,7 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="header">
 <h1>JavaFX 文档项目</h1>
 <div class="details">
-<span id="author" class="author">Published 2021-10-22</span><br>
+<span id="author" class="author">Published 2021-10-27</span><br>
 <span id="revnumber">version unspecified</span>
 </div>
 <div id="toc" class="toc2">
@@ -460,7 +460,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_选择框">3.1. 选择框</a></li>
 <li><a href="#_组合框">3.2. 组合框</a></li>
-<li><a href="#_listview">3.3. ListView</a></li>
+<li><a href="#_列表视图">3.3. 列表视图</a></li>
 <li><a href="#_tableview">3.4. TableView</a></li>
 <li><a href="#_imageview">3.5. ImageView</a></li>
 <li><a href="#_linechart">3.6. LineChart</a></li>
@@ -1387,31 +1387,31 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_listview">3.3. ListView</h3>
+<h3 id="_列表视图">3.3. 列表视图</h3>
 <div class="sect3">
-<h4 id="_listview_filtering_in_javafx">3.3.1. ListView Filtering in JavaFX</h4>
+<h4 id="_javafx_中的列表视图过滤">3.3.1. JavaFX 中的列表视图过滤</h4>
 <div class="paragraph">
-<p>This article demonstrates how to filter a ListView in a JavaFX Application.  Two lists are managed by the Application.  One list contains all of the items in the data model.  The second list contains the items currently being viewed.  A scrap of comparison logic stored as a filter mediates between the two.</p>
+<p>本文演示如何在 JavaFX 应用程序中过滤列表视图。两个列表由应用程序管理。一个列表包含数据模型中的所有项目。第二个列表包含当前正在查看的项目。存储为过滤器的一小块比较逻辑在两者之间充当中介。</p>
 </div>
 <div class="paragraph">
-<p>Binding is used heavily to keep the data structures in sync with what the user has selected.</p>
+<p>绑定被大量使用以保持数据结构与用户所选择的数据同步。</p>
 </div>
 <div class="paragraph">
-<p>This screenshot shows the Application which contains a top row of ToggleButtons which set the filter and a ListView containing the objects.</p>
+<p>此截图展示了包含一个顶行的 ToggleButtons 的应用程序，它设置过滤器和包含对象的 ListView。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ui-controls/listview_filtering_screenshot.png" alt="listview filtering screenshot">
 </div>
-<div class="title">Figure 11. Screenshot of ListView Filtering App</div>
+<div class="title">Figure 11. ListView 过滤应用程序的截图</div>
 </div>
 <div class="paragraph">
-<p>The complete code&#8201;&#8212;&#8201;a single .java file&#8201;&#8212;&#8201;is listed at the end of the article.</p>
+<p>完整代码——单个 .java 文件——将在文章的末尾列出。</p>
 </div>
 <div class="sect4">
-<h5 id="_data_structures">Data Structures</h5>
+<h5 id="_数据结构">数据结构</h5>
 <div class="paragraph">
-<p>The program begins with a domain model Player and an array of Player objects.</p>
+<p>该程序以域模型 Player 与 Player 对象数组开始。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1435,10 +1435,10 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Player class contains a pair of fields, team and playerName.  A toString() is provided so that when the object is added to the ListView (presented later), a custom ListCell class is not needed.</p>
+<p>Player 类包含一对字段，<code>team</code> 与 <code>playerName</code>。提供了 <code>toString()</code>，这样当对象添加到 <code>ListView</code>（稍后提出）时，就不需要自定义的 <code>ListCell</code> 类。</p>
 </div>
 <div class="paragraph">
-<p>The test data for this example is a list of American baseball players.</p>
+<p>此示例的测试数据是美国棒球运动员的列表。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1456,9 +1456,9 @@ button.setOnKeyReleased(e -&gt; ...);</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_model">Model</h5>
+<h5 id="_模型">模型</h5>
 <div class="paragraph">
-<p>As mentioned at the start of the article, the ListView filtering is centered around the management of two lists.  All the objects are stored in a wrapped ObservableList playersProperty and the objects that are currently viewable are stored in a wrapped FilteredList, viewablePlayersProperty.  viewablePlayersProperty is built off of playersProperty so updates made to players that meet the FilteredList criteria will also be made to viewablePlayers.</p>
+<p>如本文开头所述，<code>ListView</code> 过滤围绕两个列表的管理展开。所有对象都存储在包装的 <code>ObservableList playersProperty</code> 中，而当前可见的对象存储在包装的 <code>FilteredList</code>、<code>viewablePlayersProperty</code> 中。<code>viewablePlayersProperty</code> 是由 <code>playersProperty</code> 构建的，所以对满足 <code>FilteredList</code> 条件的 <code>Player</code> 所作的更新也将会被做到 <code>viewablePlayers</code>。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1472,7 +1472,7 @@ ReadOnlyObjectProperty&lt;FilteredList&lt;Player&gt;&gt; viewablePlayersProperty
 </div>
 </div>
 <div class="paragraph">
-<p>filterProperty() is a convenience to allow callers to bind to the underlying Predicate.</p>
+<p><code>filterProperty()</code> 是一种便捷方法，它允许调用者绑定到底层谓词。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1481,7 +1481,7 @@ ReadOnlyObjectProperty&lt;FilteredList&lt;Player&gt;&gt; viewablePlayersProperty
 </div>
 </div>
 <div class="paragraph">
-<p>The UI root is a VBox which contains an HBox of ToggleButtons and a ListView.</p>
+<p>UI 根节点是一个 Vbox，它包含 <code>ToggleButtons</code> 与 <code>ListView</code> 的 Hbox。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1497,9 +1497,9 @@ ToggleGroup filterTG = new ToggleGroup();</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_filtering_action">Filtering Action</h5>
+<h5 id="_过滤操作">过滤操作</h5>
 <div class="paragraph">
-<p>A handler is attached the ToggleButtons which will modify filterProperty.  Each ToggleButton is supplied a Predicate in the userData field.  toggleHandler uses this supplied Predicate when setting the filter property.  This code sets the special case "Show All" ToggleButton.</p>
+<p>处理程序附加在 <code>ToggleButtons</code> 上，它将修改 <code>filterProperty</code>。每个 <code>ToggleButton</code> 都在 <code>UserData</code> 字段中提供了谓词。toggleHandler 在设置过滤器属性时使用提供的谓词。这段代码设置了“显示所有” ToggleButton 的特例。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1518,21 +1518,21 @@ tbShowAll.setUserData( (Predicate&lt;Player&gt;) (Player p) -&gt; true);</code><
 </div>
 </div>
 <div class="paragraph">
-<p>The ToggleButtons that filter a specific team are created at runtime based on the Players array.  This Stream does the following.</p>
+<p>用于过滤特定球队的 ToggleButtons 是在运行时基于 Player 数组创建的。此流执行以下操作。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Distill the list of Players down to a distinct list of team Strings</p>
+<p>将 Player 列表提取出到不同球队的字符串列表</p>
 </li>
 <li>
-<p>Create a ToggleButton for each team String</p>
+<p>为每个球队字符串创建一个 ToggleButton</p>
 </li>
 <li>
-<p>Set a Predicate for each ToggleButton to be used as a filter</p>
+<p>为每个 ToggleButton 设置一个谓词以用作过滤器</p>
 </li>
 <li>
-<p>Collect the ToggleButtons for addition into the HBox container</p>
+<p>收集 ToggleButton 以添加到 Hbox 容器中</p>
 </li>
 </ol>
 </div>
@@ -1557,9 +1557,9 @@ hbox.getChildren().addAll( tbs );</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_listview_2">ListView</h5>
+<h5 id="_列表视图_2">列表视图</h5>
 <div class="paragraph">
-<p>The next step creates the ListView and binds the ListView to the viewablePlayersProperty.  This enables the ListView to receive updates based on the changing filter.</p>
+<p>下一步创建 <code>ListView</code> 并将 <code>ListView</code> 绑定到 <code>viewablePlayersProperty</code>。这使 <code>ListView</code> 能够接收基于更改过滤器的更新。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1568,7 +1568,7 @@ lv.itemsProperty().bind( viewablePlayersProperty );</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The remainder of the program creates a Scene and shows the Stage.  onShown loads the data set into the playersProperty and the viewablePlayersProperty lists.  Although both lists are in sync in this partcular version of the program, if the stock filter is every different than "no filter", this code would not need to be modified.</p>
+<p>该程序的其余部分创建了一个场景并显示了舞台。<code>onShown</code> 将数据设置为 <code>playersProperty</code> 与 <code>viewablePlayersProperty</code> 列表。尽管在这个程序的特定版本中，这两个列表是同步的，但如果库存过滤器与“无过滤器”完全不同，那么不需要修改这段代码。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1585,19 +1585,19 @@ primaryStage.show();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This article used binding to tie a list of viewable Player objects to a ListView.  The viewable Players were updated when a ToggleButton is selected.  The selection applied a filter to a full set of Players which was maintained separately as a FilteredList (thanks @kleopatra_jx).  Binding was used to keep the UI in sync and to allow for a separation of concerns in the design.</p>
+<p>本文使用绑定将可查看的球员对象列表绑定到 <code>ListView</code>。当选择 <code>ToggleButton</code> 时，可查看的球员被更新。这个选择应用了过滤器到完整的球员集合，它被单独维护为一个过滤器列表（感谢 @kleopatra_jx）。绑定用于保持 UI 同步，并允许在设计中分离关注点。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_further_reading">Further Reading</h5>
+<h5 id="_深入阅读">深入阅读</h5>
 <div class="paragraph">
-<p>To see how such a design would implement basic add and remove functionality, visit the following page <a href="https://courses.bekwam.net/public_tutorials/bkcourse_filterlistapp.php" class="bare">https://courses.bekwam.net/public_tutorials/bkcourse_filterlistapp.php</a>.</p>
+<p>要查看这种设计如何实现基本的添加与删除功能，请访问以下页面 <a href="https://courses.bekwam.net/public_tutorials/bkcourse_filterlistapp.php" class="bare">https://courses.bekwam.net/public_tutorials/bkcourse_filterlistapp.php</a>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_complete_code">Complete Code</h5>
+<h5 id="_完整代码_3">完整代码</h5>
 <div class="paragraph">
-<p>The code can be tested in a single .java file.</p>
+<p>代码可以在单个 .java 文件中进行测试。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1607,7 +1607,7 @@ primaryStage.show();</code></pre>
 	public void start(Stage primaryStage) throws Exception {
 
 		//
-		// Test data
+		// 测试数据
 		//
 		Player[] players = {new Player("BOS", "David Ortiz"),
 		                    new Player("BOS", "Jackie Bradley Jr."),
@@ -1621,7 +1621,7 @@ primaryStage.show();</code></pre>
 		                    new Player("WSH", "Wilson Ramos") };
 
 		//
-		// Set up the model which is two lists of Players and a filter criteria
+		// 设置为两个球员列表与过滤条件的模型
 		//
 		ReadOnlyObjectProperty&lt;ObservableList&lt;Player&gt;&gt; playersProperty =
 				new SimpleObjectProperty&lt;&gt;(FXCollections.observableArrayList());
@@ -1636,7 +1636,7 @@ primaryStage.show();</code></pre>
 
 
 		//
-		// Build the UI
+		// 构建 UI
 		//
 		VBox vbox = new VBox();
 		vbox.setPadding( new Insets(10));
@@ -1648,7 +1648,7 @@ primaryStage.show();</code></pre>
 		ToggleGroup filterTG = new ToggleGroup();
 
 		//
-		// The toggleHandler action wills set the filter based on the TB selected
+		// toggleHandler 操作将基于所选 TB 设置过滤器
 		//
 		@SuppressWarnings("unchecked")
 		EventHandler&lt;ActionEvent&gt; toggleHandler = (event) -&gt; {
@@ -1664,7 +1664,7 @@ primaryStage.show();</code></pre>
 		tbShowAll.setUserData( (Predicate&lt;Player&gt;) (Player p) -&gt; true);
 
 		//
-		// Create a distinct list of teams from the Player objects, then create
+		// 从球员对象中创建一个不同的球队列表，然后创建
 		// ToggleButtons
 		//
 		List&lt;ToggleButton&gt; tbs = Arrays.asList( players)
@@ -1901,7 +1901,7 @@ primaryStage.show();</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_2">3.4.3. Complete Code</h4>
+<h4 id="_complete_code">3.4.3. Complete Code</h4>
 <div class="paragraph">
 <p>The complete code for the application follows.  It is a pair of class files TableSelectApp.java and Item.java.  Item.java was already presented in its entirety in an earlier section.</p>
 </div>
@@ -2398,7 +2398,7 @@ VBox.setMargin( bottomControls, new Insets(10.0d) );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_3">4.1.6. Complete Code</h4>
+<h4 id="_complete_code_2">4.1.6. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a pair of .java files.  There is a POJO for the Customer object used by the <code>TableView</code></p>
 </div>
@@ -3985,7 +3985,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_4">4.9.3. Complete Code</h4>
+<h4 id="_complete_code_3">4.9.3. Complete Code</h4>
 <div class="paragraph">
 <p>The complete code for TileApp follows.</p>
 </div>
@@ -4154,7 +4154,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_5">4.10.2. Complete Code</h4>
+<h4 id="_complete_code_4">4.10.2. Complete Code</h4>
 <div class="paragraph">
 <p>The following is the complete code for the first demonstration involving the hidden search parameters "TitledPaneApp".</p>
 </div>
@@ -4535,7 +4535,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_model_2">7.1.4. Model</h4>
+<h4 id="_model">7.1.4. Model</h4>
 <div class="paragraph">
 <p>Finally, the Model persists the information.  This Model example has a single mocked method which will verify that it receives the correct data for the save() operation.</p>
 </div>
@@ -4933,7 +4933,7 @@ ap.getChildren().add( ta );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_model_3">7.2.5. Model</h4>
+<h4 id="_model_2">7.2.5. Model</h4>
 <div class="paragraph">
 <p>URLTestModel is presented in its entirety below.  URLTestModel maintains a copy of a domain object.  Upon initialization, this object is empty so an <code>Optional</code> is used.  A getter is provided for ViewModels.  The testURL() method issues an HTTP GET call and records the results in the URLTestObject member.  If the HTTP GET call is successful, the URLTestObject will contain the status code (probably 200) and an elapsed time.  If unsuccessful, the URLTestObject will set a convenient wasError flag and an errorMessage.</p>
 </div>
@@ -5693,7 +5693,7 @@ messageLabel.textProperty().bind( task.messageProperty() );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_6">8.2.3. Complete Code</h4>
+<h4 id="_complete_code_5">8.2.3. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -5979,7 +5979,7 @@ messageLabel.textProperty().bind( task.messageProperty() );</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_complete_code_7">8.3.5. Complete Code</h4>
+<h4 id="_complete_code_6">8.3.5. Complete Code</h4>
 <div class="paragraph">
 <p>The code can be tested in a single .java file.</p>
 </div>
@@ -6447,7 +6447,7 @@ WARNING: Exception while evaluating select-binding [taxable]</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version unspecified<br>
-Last updated 2021-10-22 02:03:05 UTC
+Last updated 2021-10-27 11:22:51 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
