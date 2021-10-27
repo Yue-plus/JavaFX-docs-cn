@@ -341,23 +341,23 @@ public class CombosApp extends Application {
 }
 ----
 
-== ListView
+== 列表视图
 
-=== ListView Filtering in JavaFX
+=== JavaFX 中的列表视图过滤
 
-This article demonstrates how to filter a ListView in a JavaFX Application.  Two lists are managed by the Application.  One list contains all of the items in the data model.  The second list contains the items currently being viewed.  A scrap of comparison logic stored as a filter mediates between the two.
+本文演示如何在 JavaFX 应用程序中过滤列表视图。两个列表由应用程序管理。一个列表包含数据模型中的所有项目。第二个列表包含当前正在查看的项目。存储为过滤器的一小块比较逻辑在两者之间充当中介。
 
-Binding is used heavily to keep the data structures in sync with what the user has selected.
+绑定被大量使用以保持数据结构与用户所选择的数据同步。
 
-This screenshot shows the Application which contains a top row of ToggleButtons which set the filter and a ListView containing the objects.
+此截图展示了包含一个顶行的 ToggleButtons 的应用程序，它设置过滤器和包含对象的 ListView。
 
-image::images/ui-controls/listview_filtering_screenshot.png[title="Screenshot of ListView Filtering App"]
+image::images/ui-controls/listview_filtering_screenshot.png[title="ListView 过滤应用程序的截图"]
 
-The complete code -- a single .java file -- is listed at the end of the article.
+完整代码——单个 .java 文件——将在文章的末尾列出。
 
-==== Data Structures
+==== 数据结构
 
-The program begins with a domain model Player and an array of Player objects.
+该程序以域模型 Player 与 Player 对象数组开始。
 
 [source,java]
 ----
@@ -380,9 +380,9 @@ static class Player {
 }
 ----
 
-The Player class contains a pair of fields, team and playerName.  A toString() is provided so that when the object is added to the ListView (presented later), a custom ListCell class is not needed.
+Player 类包含一对字段，`team` 与 `playerName`。提供了 `toString()`，这样当对象添加到 `ListView`（稍后提出）时，就不需要自定义的 `ListCell` 类。
 
-The test data for this example is a list of American baseball players.
+此示例的测试数据是美国棒球运动员的列表。
 
 [source,java]
 ----
@@ -398,9 +398,9 @@ Player[] players = {new Player("BOS", "David Ortiz"),
                     new Player("WSH", "Wilson Ramos") };
 ----
 
-==== Model
+==== 模型
 
-As mentioned at the start of the article, the ListView filtering is centered around the management of two lists.  All the objects are stored in a wrapped ObservableList playersProperty and the objects that are currently viewable are stored in a wrapped FilteredList, viewablePlayersProperty.  viewablePlayersProperty is built off of playersProperty so updates made to players that meet the FilteredList criteria will also be made to viewablePlayers.
+如本文开头所述，`ListView` 过滤围绕两个列表的管理展开。所有对象都存储在包装的 `ObservableList playersProperty` 中，而当前可见的对象存储在包装的 `FilteredList`、`viewablePlayersProperty` 中。`viewablePlayersProperty` 是由 `playersProperty` 构建的，所以对满足 `FilteredList` 条件的 `Player` 所作的更新也将会被做到 `viewablePlayers`。
 
 [source,java]
 ----
@@ -413,7 +413,7 @@ ReadOnlyObjectProperty<FilteredList<Player>> viewablePlayersProperty =
 						));
 ----
 
-filterProperty() is a convenience to allow callers to bind to the underlying Predicate.  
+`filterProperty()` 是一种便捷方法，它允许调用者绑定到底层谓词。
 
 [source,java]
 ----
@@ -421,7 +421,7 @@ ObjectProperty<Predicate<? super Player>> filterProperty =
 	viewablePlayersProperty.get().predicateProperty();
 ----
 
-The UI root is a VBox which contains an HBox of ToggleButtons and a ListView.
+UI 根节点是一个 Vbox，它包含 `ToggleButtons` 与 `ListView` 的 Hbox。
 
 [source,java]
 ----
@@ -435,9 +435,9 @@ hbox.setSpacing( 2 );
 ToggleGroup filterTG = new ToggleGroup();
 ----
 
-==== Filtering Action
+==== 过滤操作
 
-A handler is attached the ToggleButtons which will modify filterProperty.  Each ToggleButton is supplied a Predicate in the userData field.  toggleHandler uses this supplied Predicate when setting the filter property.  This code sets the special case "Show All" ToggleButton.
+处理程序附加在 `ToggleButtons` 上，它将修改 `filterProperty`。每个 `ToggleButton` 都在 `UserData` 字段中提供了谓词。toggleHandler 在设置过滤器属性时使用提供的谓词。这段代码设置了“显示所有” ToggleButton 的特例。
 
 [source,java]
 ----
@@ -455,12 +455,12 @@ tbShowAll.setOnAction(toggleHandler);
 tbShowAll.setUserData( (Predicate<Player>) (Player p) -> true);
 ----
 
-The ToggleButtons that filter a specific team are created at runtime based on the Players array.  This Stream does the following.
+用于过滤特定球队的 ToggleButtons 是在运行时基于 Player 数组创建的。此流执行以下操作。
 
-. Distill the list of Players down to a distinct list of team Strings
-. Create a ToggleButton for each team String
-. Set a Predicate for each ToggleButton to be used as a filter
-. Collect the ToggleButtons for addition into the HBox container
+. 将 Player 列表提取出到不同球队的字符串列表
+. 为每个球队字符串创建一个 ToggleButton
+. 为每个 ToggleButton 设置一个谓词以用作过滤器
+. 收集 ToggleButton 以添加到 Hbox 容器中
 
 [source,java]
 ----
@@ -481,9 +481,9 @@ hbox.getChildren().add( tbShowAll );
 hbox.getChildren().addAll( tbs );
 ----
 
-==== ListView 
+==== 列表视图
 
-The next step creates the ListView and binds the ListView to the viewablePlayersProperty.  This enables the ListView to receive updates based on the changing filter.
+下一步创建 `ListView` 并将 `ListView` 绑定到 `viewablePlayersProperty`。这使 `ListView` 能够接收基于更改过滤器的更新。
 
 [source,java]
 ----
@@ -491,7 +491,7 @@ ListView<Player> lv = new ListView<>();
 lv.itemsProperty().bind( viewablePlayersProperty );
 ----
 
-The remainder of the program creates a Scene and shows the Stage.  onShown loads the data set into the playersProperty and the viewablePlayersProperty lists.  Although both lists are in sync in this partcular version of the program, if the stock filter is every different than "no filter", this code would not need to be modified.
+该程序的其余部分创建了一个场景并显示了舞台。`onShown` 将数据设置为 `playersProperty` 与 `viewablePlayersProperty` 列表。尽管在这个程序的特定版本中，这两个列表是同步的，但如果库存过滤器与“无过滤器”完全不同，那么不需要修改这段代码。
 
 [source,java]
 ----
@@ -507,15 +507,15 @@ primaryStage.setScene( scene );
 primaryStage.show();
 ----
 
-This article used binding to tie a list of viewable Player objects to a ListView.  The viewable Players were updated when a ToggleButton is selected.  The selection applied a filter to a full set of Players which was maintained separately as a FilteredList (thanks @kleopatra_jx).  Binding was used to keep the UI in sync and to allow for a separation of concerns in the design.
+本文使用绑定将可查看的球员对象列表绑定到 `ListView`。当选择 `ToggleButton` 时，可查看的球员被更新。这个选择应用了过滤器到完整的球员集合，它被单独维护为一个过滤器列表（感谢 @kleopatra_jx）。绑定用于保持 UI 同步，并允许在设计中分离关注点。
 
-==== Further Reading
+==== 深入阅读
 
-To see how such a design would implement basic add and remove functionality, visit the following page https://courses.bekwam.net/public_tutorials/bkcourse_filterlistapp.php.
+要查看这种设计如何实现基本的添加与删除功能，请访问以下页面 https://courses.bekwam.net/public_tutorials/bkcourse_filterlistapp.php.
 
-==== Complete Code
+==== 完整代码
 
-The code can be tested in a single .java file.
+代码可以在单个 .java 文件中进行测试。
 
 [source,java]
 ----
@@ -525,7 +525,7 @@ public class FilterListApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		//
-		// Test data
+		// 测试数据
 		//
 		Player[] players = {new Player("BOS", "David Ortiz"),
 		                    new Player("BOS", "Jackie Bradley Jr."),
@@ -539,7 +539,7 @@ public class FilterListApp extends Application {
 		                    new Player("WSH", "Wilson Ramos") };
 		
 		//
-		// Set up the model which is two lists of Players and a filter criteria
+		// 设置为两个球员列表与过滤条件的模型
 		//
 		ReadOnlyObjectProperty<ObservableList<Player>> playersProperty = 
 				new SimpleObjectProperty<>(FXCollections.observableArrayList());
@@ -554,7 +554,7 @@ public class FilterListApp extends Application {
 		
 
 		//
-		// Build the UI
+		// 构建 UI
 		//
 		VBox vbox = new VBox();
 		vbox.setPadding( new Insets(10));
@@ -566,7 +566,7 @@ public class FilterListApp extends Application {
 		ToggleGroup filterTG = new ToggleGroup();
 		
 		//
-		// The toggleHandler action wills set the filter based on the TB selected
+		// toggleHandler 操作将基于所选 TB 设置过滤器
 		//
 		@SuppressWarnings("unchecked")
 		EventHandler<ActionEvent> toggleHandler = (event) -> {
@@ -582,7 +582,7 @@ public class FilterListApp extends Application {
 		tbShowAll.setUserData( (Predicate<Player>) (Player p) -> true);
 		
 		//
-		// Create a distinct list of teams from the Player objects, then create
+		// 从球员对象中创建一个不同的球队列表，然后创建
 		// ToggleButtons
 		//
 		List<ToggleButton> tbs = Arrays.asList( players)
